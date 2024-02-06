@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/ic_bg2"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="411dp"
+        android:layout_height="112dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318">
+
+        <ImageButton
+            android:id="@+id/ibStart"
+            android:layout_width="183dp"
+            android:layout_height="85dp"
+            android:background="@color/main_screen_bg"
+            android:contentDescription="@string/to_start_session"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ib_start"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="220dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll1"
+        app:layout_constraintVertical_bias="0.157">
+
+        <ImageButton
+            android:id="@+id/ibBmiCalculator"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="40dp"
+            android:background="@color/main_screen_bg"
+            android:contentDescription="@string/to_calculate_bmi"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ib_bmi" />
+
+        <ImageButton
+            android:id="@+id/ibHistory"
+            android:layout_width="110dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/main_screen_bg"
+            android:contentDescription="@string/to_check_previous_workout_records"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ib_history" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:fontFamily="@font/goldman"
+        android:text="@string/bmi"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tvHistory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll2" />
+
+    <TextView
+        android:id="@+id/tvHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/goldman"
+        android:text="@string/history"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvBMI"
+        app:layout_constraintTop_toBottomOf="@+id/ll2"
+        android:layout_marginStart="45dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

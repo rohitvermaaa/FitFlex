@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FitFlex</string>
+    <string name="history_of_previous_session">History of previous session</string>
+    <string name="bmi_calculator">Bmi calculator</string>
+    <string name="start_button_to_start_the_session">Start button to start the session</string>
+    <string name="bmi">BMI</string>
+    <string name="history">History</string>
+    <string name="start">Start</string>
+    <string name="to_check_previous_workout_records">To check previous workout records</string>
+    <string name="to_calculate_bmi">To calculate BMI</string>
+    <string name="to_start_session">To start session</string>
+</resources>
