@@ -9,4 +9,5 @@
     <string name="to_check_previous_workout_records">To check previous workout records</string>
     <string name="to_calculate_bmi">To calculate BMI</string>
     <string name="to_start_session">To start session</string>
+    <string name="get_ready_in">Get Ready In</string>
 </resources>
