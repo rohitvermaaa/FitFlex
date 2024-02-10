@@ -10,4 +10,7 @@
     <string name="to_calculate_bmi">To calculate BMI</string>
     <string name="to_start_session">To start session</string>
     <string name="get_ready_in">Get Ready In</string>
+    <string name="_30">30</string>
+    <string name="_10">10</string>
+    <string name="exercise_name">Exercise Name</string>
 </resources>

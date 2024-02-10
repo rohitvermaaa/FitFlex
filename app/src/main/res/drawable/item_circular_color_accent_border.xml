@@ -3,7 +3,7 @@
     android:shape="oval">
     <stroke
         android:width="5dp"
-        android:color="@color/black" />
+        android:color="#011627" />
 
     <solid android:color="@color/toolbar_color_control_normal" />
 </shape>
