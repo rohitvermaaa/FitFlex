@@ -12,5 +12,6 @@
     <string name="get_ready_in">Get Ready In</string>
     <string name="_30">30</string>
     <string name="_10">10</string>
-    <string name="exercise_name">Exercise Name</string>
+    <string name="exercise_name">Crunches</string>
+    <string name="upcoming_exercise">Upcoming Exercise</string>
 </resources>

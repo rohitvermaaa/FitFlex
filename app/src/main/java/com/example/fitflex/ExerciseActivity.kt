@@ -40,7 +40,7 @@ class ExerciseActivity : AppCompatActivity() {
     private fun setRestProgressBar(){
         binding?.progressBar?.progress = restProgress
 //TODO: Change the time back to 11000
-        restTimer = object : CountDownTimer(2000 , 1000){
+        restTimer = object : CountDownTimer(1000 , 1000){
             override fun onTick(p0: Long) {
                 restProgress++
                 binding?.progressBar?.progress = 11 - restProgress
@@ -57,7 +57,7 @@ class ExerciseActivity : AppCompatActivity() {
     private fun setExerciseProgressBar(){
         binding?.progressBarExercise?.progress = exerciseProgress
 //TODO: Change the time to 31000 back
-        exerciseTimer = object : CountDownTimer(4000 , 1000){
+        exerciseTimer = object : CountDownTimer(1000 , 1000){
             override fun onTick(p0: Long) {
                 exerciseProgress++
                 binding?.progressBarExercise?.progress = 31 - exerciseProgress
@@ -83,21 +83,26 @@ class ExerciseActivity : AppCompatActivity() {
         binding?.tvExerciseName?.visibility = View.INVISIBLE
         binding?.flExerciseView?.visibility = View.INVISIBLE
         binding?.ivImage?.visibility = View.INVISIBLE
+        binding?.tvUpcomingLabel?.visibility = View.VISIBLE
+        binding?.tvUpcomingExerciseName?.visibility = View.VISIBLE
 
-        if(restTimer!=null){
+        if (restTimer != null) {
             restTimer?.cancel()
-            restProgress=0
+            restProgress = 0
         }
-        binding?.flRestView?.visibility = View.INVISIBLE
+
+        binding?.tvUpcomingExerciseName?.text = exerciseList!![currentExercisePosition].getName()
         setRestProgressBar()
     }
 
-        private fun setupExerciseView(){
+    private fun setupExerciseView(){
         binding?.flRestView?.visibility = View.INVISIBLE
         binding?.tvTitle?.visibility = View.INVISIBLE
         binding?.tvExerciseName?.visibility = View.VISIBLE
         binding?.flExerciseView?.visibility = View.VISIBLE
         binding?.ivImage?.visibility = View.VISIBLE
+        binding?.tvUpcomingLabel?.visibility = View.INVISIBLE
+        binding?.tvUpcomingExerciseName?.visibility = View.INVISIBLE
 
         if (exerciseTimer!=null){
             exerciseTimer?.cancel()

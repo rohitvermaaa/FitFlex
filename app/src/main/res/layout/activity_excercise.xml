@@ -21,11 +21,12 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/goldman"
+        android:fontFamily="@font/tomorrow"
+        android:textStyle="bold"
         android:text="@string/get_ready_in"
         android:textColor="@color/black"
         android:textSize="42sp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@+id/flRestView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -49,7 +50,7 @@
             android:progress="10"
             android:rotation="-90"
             android:indeterminate="false"
-            android:indeterminateTint="#00a6fb"
+            android:indeterminateTint="#00C800"
             >
         </ProgressBar>
 
@@ -73,26 +74,61 @@
         </LinearLayout>
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/tvUpcomingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tomorrow"
+        android:gravity="center"
+        android:text="@string/upcoming_exercise"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flRestView"
+        app:layout_constraintBottom_toTopOf="@id/tvUpcomingExerciseName"
+        tools:visibility="visible"
+        android:paddingTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tvUpcomingExerciseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tomorrow"
+        android:gravity="center"
+        android:text="@string/exercise_name"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvUpcomingLabel"
+        tools:visibility="visible"
+        android:paddingTop="2dp"/>
+
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/ic_dumbell_lateral_raise"
         android:scaleType="centerInside"
+        android:src="@drawable/ic_dumbell_lateral_raise"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/tvExerciseName"
         app:layout_constraintTop_toBottomOf="@id/toolbarExercise"
-        />
+        tools:layout_editor_absoluteX="-205dp" />
 
     <TextView
         android:id="@+id/tvExerciseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/kufam"
+        android:fontFamily="@font/tomorrow"
         android:gravity="center"
-        android:text="@string/exercise_name"
+        android:paddingBottom="18dp"
+        android:text="Current Exercise"
         android:textColor="@color/black"
         android:textSize="28sp"
+        android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvExerciseName"
-        android:layout_marginBottom="25dp">
+        android:layout_marginBottom="35dp">
 
         <ProgressBar
             android:id="@+id/progressBarExercise"
