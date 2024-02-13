@@ -3,8 +3,8 @@
     <item>
         <shape
             android:shape="ring"
-            android:innerRadiusRatio="2.7"
-            android:thickness="8dp"
+            android:innerRadiusRatio="3.5"
+            android:thickness="19.1dp"
             android:useLevel="true"
             >
             <solid android:color="#FF0000"/>

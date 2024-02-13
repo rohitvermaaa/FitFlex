@@ -43,6 +43,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_gravity="center"
@@ -51,6 +52,7 @@
             android:rotation="-90"
             android:indeterminate="false"
             android:indeterminateTint="#00C800"
+            android:progressDrawable="@drawable/circular_progress_bar_rest"
             >
         </ProgressBar>
 
@@ -125,7 +127,7 @@
         android:fontFamily="@font/tomorrow"
         android:gravity="center"
         android:paddingBottom="18dp"
-        android:text="Current Exercise"
+        android:text="@string/current_exercise"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -142,7 +144,6 @@
         android:visibility="gone"
         tools:visibility="visible"
         android:background="@drawable/item_circular_color_accent_border"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvExerciseName"
@@ -159,8 +160,7 @@
             android:rotation="-90"
             android:indeterminate="false"
             android:indeterminateTint="#00a6fb"
-            android:background="@drawable/circular_progress_bar_grey"
-            android:progressDrawable="@drawable/circular_progress_bar"
+            android:progressDrawable="@drawable/circular_progress_bar_exercise"
             >
         </ProgressBar>
 
@@ -184,4 +184,15 @@
         </LinearLayout>
     </FrameLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="10dp"
+        android:id="@+id/rvExerciseStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintTop_toBottomOf="@id/flExerciseView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

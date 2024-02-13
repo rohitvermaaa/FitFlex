@@ -1,23 +1,39 @@
 package com.example.fitflex
 
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitflex.databinding.ActivityExcerciseBinding
+import java.util.*
 
-class ExerciseActivity : AppCompatActivity() {
+class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var binding : ActivityExcerciseBinding? = null
 
     private var restTimer : CountDownTimer? = null
     private var restProgress = 0
+    //TODO: Change the time back to 11000
+    private var restTimeDuration : Long = 1
 
     private var exerciseTimer : CountDownTimer? = null
     private var exerciseProgress = 0
+    //TODO: Change the time to 31000 back
+    private var exerciseTimeDuration : Long = 2
 
     private var exerciseList : ArrayList<ExerciseModel>? = null
     private var currentExercisePosition : Int = -1
+
+    private var tts : TextToSpeech? = null
+    private var player : MediaPlayer? = null
+
+    private var exerciseAdapter : ExerciseStatusAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityExcerciseBinding.inflate(layoutInflater)
@@ -31,16 +47,18 @@ class ExerciseActivity : AppCompatActivity() {
 
         exerciseList = Constants.defaultExerciseList()
 
+        tts = TextToSpeech(this, this)
+
         binding?.toolbarExercise?.setNavigationOnClickListener {
             onBackPressed()
         }
-        setRestProgressBar()
+        setupRestView()
+        setupExerciseStatusRecyclerView()
     }
 
     private fun setRestProgressBar(){
         binding?.progressBar?.progress = restProgress
-//TODO: Change the time back to 11000
-        restTimer = object : CountDownTimer(1000 , 1000){
+        restTimer = object : CountDownTimer(restTimeDuration*1000 , 1000){
             override fun onTick(p0: Long) {
                 restProgress++
                 binding?.progressBar?.progress = 11 - restProgress
@@ -49,6 +67,8 @@ class ExerciseActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 currentExercisePosition++
+                exerciseList!![currentExercisePosition].setIsSelected(true)
+                exerciseAdapter!!.notifyDataSetChanged()
                 setupExerciseView()
             }
         }.start()
@@ -56,15 +76,17 @@ class ExerciseActivity : AppCompatActivity() {
 
     private fun setExerciseProgressBar(){
         binding?.progressBarExercise?.progress = exerciseProgress
-//TODO: Change the time to 31000 back
-        exerciseTimer = object : CountDownTimer(1000 , 1000){
-            override fun onTick(p0: Long) {
+        exerciseTimer = object : CountDownTimer(exerciseTimeDuration*1000 , 1000){
+                 override fun onTick(p0: Long) {
                 exerciseProgress++
                 binding?.progressBarExercise?.progress = 31 - exerciseProgress
                 binding?.tvTimerExercise?.text = (31-exerciseProgress).toString()
             }
 
             override fun onFinish() {
+                exerciseList!![currentExercisePosition].setIsSelected(false)
+                exerciseList!![currentExercisePosition].setIsCompleted(true)
+                exerciseAdapter!!.notifyDataSetChanged()
                 if (currentExercisePosition < exerciseList?.size!! - 1){
                     setupRestView()
                 }
@@ -78,6 +100,20 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     private fun setupRestView(){
+
+        try {
+            val soundURI = Uri.parse("android.resource://com.example.fitflex/" + R.raw.rest_view_sound)
+            player = MediaPlayer.create(applicationContext, soundURI)
+            player?.isLooping = false
+
+            // Add delay using Handler
+            Handler().postDelayed({
+                player?.start()
+            }, 800) // 1000 milliseconds = 1 second
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         binding?.flRestView?.visibility = View.VISIBLE
         binding?.tvTitle?.visibility = View.VISIBLE
         binding?.tvExerciseName?.visibility = View.INVISIBLE
@@ -91,7 +127,9 @@ class ExerciseActivity : AppCompatActivity() {
             restProgress = 0
         }
 
-        binding?.tvUpcomingExerciseName?.text = exerciseList!![currentExercisePosition].getName()
+        speakOut("Rest ")
+
+        binding?.tvUpcomingExerciseName?.text = exerciseList!![currentExercisePosition+1].getName()
         setRestProgressBar()
     }
 
@@ -109,6 +147,8 @@ class ExerciseActivity : AppCompatActivity() {
             exerciseProgress=0
         }
 
+        speakOut(exerciseList!![currentExercisePosition].getName())
+
         binding?.ivImage?.setImageResource(exerciseList!![currentExercisePosition].getImage())
         binding?.tvExerciseName?.text = (exerciseList!![currentExercisePosition].getName())
 
@@ -125,6 +165,38 @@ class ExerciseActivity : AppCompatActivity() {
             exerciseTimer?.cancel()
             exerciseProgress=0
         }
+        if (tts != null){
+            tts!!.stop()
+            tts!!.shutdown()
+        }
+        if (player != null){
+            player!!.stop()
+        }
         binding = null
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS){
+            val result = tts?.setLanguage(Locale.ENGLISH)
+
+            if(result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA){
+                Log.e("tts" , "The language specified is not supported")
+            }
+        }
+        else{
+            Log.e("tts" , "Initialization Failed")
+        }
+    }
+
+    private fun speakOut(text : String){
+        tts!!.speak(text, TextToSpeech.QUEUE_FLUSH  , null , "")
+        tts!!.setPitch(0.8f)
+        tts!!.setSpeechRate(0.9f)
+    }
+
+    private fun setupExerciseStatusRecyclerView(){
+        binding?.rvExerciseStatus?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        exerciseAdapter = ExerciseStatusAdapter(exerciseList!!)
+        binding?.rvExerciseStatus?.adapter = exerciseAdapter
     }
 }

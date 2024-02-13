@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvItem"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_margin="2dp"
+    android:background="@drawable/item_circular_background"
+    tools:text="1"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    android:gravity="center_horizontal"
+    android:fontFamily="@font/tomorrow"
+    android:padding="2dp"
+    />
