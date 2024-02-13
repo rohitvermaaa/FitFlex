@@ -1,6 +1,5 @@
 package com.example.fitflex
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -26,7 +25,6 @@ class ExerciseStatusAdapter(val items : ArrayList<ExerciseModel>) : RecyclerView
             }
             model.getIsCompleted() ->{
                 holder.tvItem.background = ContextCompat.getDrawable(holder.itemView.context , R.drawable.item_circular_bg_completed)
-                holder.tvItem.setTextColor(Color.parseColor("#C5CAE9"))
             }
             else ->{
                 holder.tvItem.background = ContextCompat.getDrawable(holder.itemView.context , R.drawable.item_circular_background)

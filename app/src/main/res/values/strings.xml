@@ -15,4 +15,7 @@
     <string name="exercise_name">Exercise Name</string>
     <string name="upcoming_exercise">Upcoming Exercise</string>
     <string name="current_exercise">Current Exercise</string>
+    <string name="finish">Finish</string>
+    <string name="keep_it_up">Keep it Up!!!</string>
+    <string name="fantastic_workout_well_done">Fantastic Workout, Well Done</string>
 </resources>

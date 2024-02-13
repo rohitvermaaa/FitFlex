@@ -1,5 +1,6 @@
 package com.example.fitflex
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
@@ -8,7 +9,6 @@ import android.os.Handler
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fitflex.databinding.ActivityExcerciseBinding
@@ -20,12 +20,12 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var restTimer : CountDownTimer? = null
     private var restProgress = 0
     //TODO: Change the time back to 11000
-    private var restTimeDuration : Long = 1
+    var restTimeDuration : Double = .1
 
     private var exerciseTimer : CountDownTimer? = null
     private var exerciseProgress = 0
     //TODO: Change the time to 31000 back
-    private var exerciseTimeDuration : Long = 2
+    private var exerciseTimeDuration : Double = .1
 
     private var exerciseList : ArrayList<ExerciseModel>? = null
     private var currentExercisePosition : Int = -1
@@ -58,7 +58,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setRestProgressBar(){
         binding?.progressBar?.progress = restProgress
-        restTimer = object : CountDownTimer(restTimeDuration*1000 , 1000){
+        restTimer = object : CountDownTimer((restTimeDuration*1000).toLong(), 1000){
             override fun onTick(p0: Long) {
                 restProgress++
                 binding?.progressBar?.progress = 11 - restProgress
@@ -76,23 +76,23 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setExerciseProgressBar(){
         binding?.progressBarExercise?.progress = exerciseProgress
-        exerciseTimer = object : CountDownTimer(exerciseTimeDuration*1000 , 1000){
-                 override fun onTick(p0: Long) {
+        exerciseTimer = object : CountDownTimer((exerciseTimeDuration*1000).toLong(), 1000){
+            override fun onTick(p0: Long) {
                 exerciseProgress++
                 binding?.progressBarExercise?.progress = 31 - exerciseProgress
                 binding?.tvTimerExercise?.text = (31-exerciseProgress).toString()
             }
 
             override fun onFinish() {
-                exerciseList!![currentExercisePosition].setIsSelected(false)
-                exerciseList!![currentExercisePosition].setIsCompleted(true)
-                exerciseAdapter!!.notifyDataSetChanged()
                 if (currentExercisePosition < exerciseList?.size!! - 1){
+                    exerciseList!![currentExercisePosition].setIsSelected(false)
+                    exerciseList!![currentExercisePosition].setIsCompleted(true)
+                    exerciseAdapter!!.notifyDataSetChanged()
                     setupRestView()
                 }
-                else{
-                    Toast.makeText(this@ExerciseActivity , "Finished" , Toast.LENGTH_SHORT).show()
-//TODO: Remove finish() after setting the intent for finish screen
+                else {
+                    val intent = Intent(this@ExerciseActivity,FinishActivity::class.java)
+                    startActivity(intent)
                     finish()
                 }
             }
@@ -105,11 +105,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val soundURI = Uri.parse("android.resource://com.example.fitflex/" + R.raw.rest_view_sound)
             player = MediaPlayer.create(applicationContext, soundURI)
             player?.isLooping = false
-
-            // Add delay using Handler
             Handler().postDelayed({
                 player?.start()
-            }, 800) // 1000 milliseconds = 1 second
+            }, 800)
         } catch (e: Exception) {
             e.printStackTrace()
         }
