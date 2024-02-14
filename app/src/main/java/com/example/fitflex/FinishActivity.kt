@@ -10,7 +10,7 @@ import nl.dionsegijn.konfetti.core.emitter.Emitter
 import java.util.concurrent.TimeUnit
 
 class FinishActivity : AppCompatActivity() {
-    private var binding : ActivityFinishBinding? = null
+    private var binding: ActivityFinishBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFinishBinding.inflate(layoutInflater)
@@ -51,7 +51,7 @@ class FinishActivity : AppCompatActivity() {
             emitter = Emitter(duration = 1000, TimeUnit.MILLISECONDS).max(100),
             position = Position.Relative(0.5, 0.0)
         )
-        binding?.konfettiView?.start(party,party2,party3)
+        binding?.konfettiView?.start(party, party2, party3)
     }
 
     override fun onDestroy() {

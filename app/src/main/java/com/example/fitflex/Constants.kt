@@ -1,7 +1,7 @@
 package com.example.fitflex
 
 object Constants {
-    fun defaultExerciseList() : ArrayList<ExerciseModel>{
+    fun defaultExerciseList(): ArrayList<ExerciseModel> {
         val exerciseList = ArrayList<ExerciseModel>()
 
         val crunches = ExerciseModel(

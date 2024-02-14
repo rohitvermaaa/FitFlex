@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExerciseActivity"
-    android:background="#F3F0E6">
+    android:background="#F3F0E6"
+    tools:context=".ExerciseActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarExercise"
@@ -14,19 +14,18 @@
         android:background="@color/main_screen_bg"
         android:theme="@style/ToolbarTheme"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/black"
-        />
+        app:titleTextColor="@color/black" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/tomorrow"
-        android:textStyle="bold"
         android:text="@string/get_ready_in"
         android:textColor="@color/black"
         android:textSize="42sp"
-        android:layout_marginBottom="15dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/flRestView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,14 +46,12 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_gravity="center"
-            android:max="10"
-            android:progress="10"
-            android:rotation="-90"
             android:indeterminate="false"
             android:indeterminateTint="#00C800"
+            android:max="10"
+            android:progress="10"
             android:progressDrawable="@drawable/circular_progress_bar_rest"
-            >
-        </ProgressBar>
+            android:rotation="-90"></ProgressBar>
 
         <LinearLayout
             android:layout_width="70dp"
@@ -69,9 +66,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/goldman"
                 android:text="@string/_10"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="36sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </FrameLayout>
@@ -82,16 +79,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/tomorrow"
         android:gravity="center"
+        android:paddingTop="10dp"
         android:text="@string/upcoming_exercise"
         android:textColor="@color/black"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/tvUpcomingExerciseName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/flRestView"
-        app:layout_constraintBottom_toTopOf="@id/tvUpcomingExerciseName"
-        tools:visibility="visible"
-        android:paddingTop="10dp"
-        />
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tvUpcomingExerciseName"
@@ -99,6 +95,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/tomorrow"
         android:gravity="center"
+        android:paddingTop="2dp"
         android:text="@string/exercise_name"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -106,8 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvUpcomingLabel"
-        tools:visibility="visible"
-        android:paddingTop="2dp"/>
+        tools:visibility="visible" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/ivImage"
@@ -141,13 +137,13 @@
         android:id="@+id/flExerciseView"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:visibility="gone"
-        tools:visibility="visible"
+        android:layout_marginBottom="35dp"
         android:background="@drawable/item_circular_color_accent_border"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvExerciseName"
-        android:layout_marginBottom="35dp">
+        tools:visibility="visible">
 
         <ProgressBar
             android:id="@+id/progressBarExercise"
@@ -155,14 +151,12 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_gravity="center"
-            android:max="30"
-            android:progress="300"
-            android:rotation="-90"
             android:indeterminate="false"
             android:indeterminateTint="#00a6fb"
+            android:max="30"
+            android:progress="300"
             android:progressDrawable="@drawable/circular_progress_bar_exercise"
-            >
-        </ProgressBar>
+            android:rotation="-90"></ProgressBar>
 
         <LinearLayout
             android:layout_width="70dp"
@@ -177,22 +171,21 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/goldman"
                 android:text="@string/_30"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="36sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingTop="10dp"
         android:id="@+id/rvExerciseStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        app:layout_constraintTop_toBottomOf="@id/flExerciseView"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flExerciseView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

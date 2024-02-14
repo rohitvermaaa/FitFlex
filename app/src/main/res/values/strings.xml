@@ -18,4 +18,19 @@
     <string name="finish">Finish</string>
     <string name="keep_it_up">Keep it Up!!!</string>
     <string name="fantastic_workout_well_done">Fantastic Workout, Well Done</string>
+    <string name="this_will_stop_your_workout">This will stop your workout.</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="leave">Leave</string>
+    <string name="stay">Stay</string>
+    <string name="are_you_sure_you_want_to_quit">Are you sure you want to quit?</string>
+    <string name="pound_ft">pound/ft</string>
+    <string name="kg_cm">kg/cm</string>
+    <string name="enter_height">Height</string>
+    <string name="enter_weight">Weight</string>
+    <string name="your_bmi_result">Your BMI Result :</string>
+    <string name="calculate">Calculate</string>
+    <string name="kg_and_cm">Kg and Cm</string>
+    <string name="lb_and_ft">Lb and Ft</string>
+    <string name="feet">Feet</string>
+    <string name="inches">Inches</string>
 </resources>
