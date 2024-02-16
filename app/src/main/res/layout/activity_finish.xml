@@ -51,7 +51,7 @@
             android:paddingHorizontal="25dp"
             android:text="@string/finish"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:textSize="28sp" />
 
     </LinearLayout>

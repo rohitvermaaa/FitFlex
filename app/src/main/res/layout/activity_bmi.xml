@@ -193,7 +193,7 @@
                 android:paddingHorizontal="25dp"
                 android:text="@string/calculate"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
+                android:textColor="#FFFFFF"
                 android:textSize="22sp" />
 
         </LinearLayout>

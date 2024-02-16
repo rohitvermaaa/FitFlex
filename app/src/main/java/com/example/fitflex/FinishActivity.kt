@@ -2,11 +2,18 @@ package com.example.fitflex
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.fitflex.databinding.ActivityFinishBinding
+import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class FinishActivity : AppCompatActivity() {
@@ -21,6 +28,9 @@ class FinishActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val historyDao = (application as WorkOutApp).db.historyDao()
+        addDateToDatabase(historyDao)
     }
 
     private fun initUi() {
@@ -52,6 +62,21 @@ class FinishActivity : AppCompatActivity() {
             position = Position.Relative(0.5, 0.0)
         )
         binding?.konfettiView?.start(party, party2, party3)
+    }
+
+    private fun addDateToDatabase(historyDao: HistoryDao){
+        val c = Calendar.getInstance()
+        val dateTime = c.time
+        Log.i("Date :" , "" + dateTime)
+
+        val sdf = SimpleDateFormat("dd MMM yyyy HH:mm:ss", Locale.getDefault())
+        val date = sdf.format(dateTime)
+        Log.i("Formatted Date :" , "" + date)
+
+        lifecycleScope.launch {
+            historyDao.insert(HistoryEntity(date))
+        }
+        Toast.makeText(this , "dsad" , Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

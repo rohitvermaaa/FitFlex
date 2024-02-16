@@ -30,7 +30,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var exerciseProgress = 0
 
     //TODO: Change the time to 31000 back
-    private var exerciseTimeDuration: Double = 2.0
+    private var exerciseTimeDuration: Double = 1.0
 
     private var exerciseList: ArrayList<ExerciseModel>? = null
     private var currentExercisePosition: Int = -1
